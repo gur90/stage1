@@ -35,6 +35,16 @@ list-style: none;
     background: #fff;
     border: 1px solid #f9f9f9;
     border-radius: 5px;
+    cursor: pointer;
+   
+    }
+    li:hover {
+        border: 2px solid  black;
+       
+        
+    }
+    .active {
+        background-color: green;
     }
 .symbol {
         width: 40px;
@@ -44,6 +54,9 @@ list-style: none;
 }
 .board .delete  {
     width: 70px;
+}
+.on {
+    display: none;
 }
 .lastitem {
     margin-right: 0;

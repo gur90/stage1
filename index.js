@@ -223,3 +223,26 @@ about.className = "about";
 about.id = "about-board";
 about.textContent = "Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt";
 div.appendChild(about);
+
+// textarea
+document.querySelectorAll("li").forEach(function(el){
+    el.addEventListener('click', function(){
+        if(el.classList.contains('space')==true) {
+            text.textContent += " "
+        } 
+        if(el.classList.contains('lastitem')==true) {
+            text.textContent = "";
+        } else {
+            text.textContent += el.textContent;
+            el.classList.add('active')
+            setTimeout(() => {
+                
+                el.classList.remove('active');
+           
+              }, 500);
+            };
+        })
+    
+    } )
+
+
