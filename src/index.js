@@ -34,9 +34,13 @@ const objOn2 = ['{', '}'];
 const objLetter3 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
 const objOff3 = [';', "'"];
 const objOn3 = [':'];
-const objLetter4 = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
+const objLetter4 = ['y', 'x', 'c', 'v', 'b', 'n', 'm'];
 const objOff4 = [',', '.', '/'];
 const objOn4 = ['<', '>', '?'];
+const obj = ['~', '!', '@', '#', '$', '%', ':', '?', '*', '(', ')', '_', '+', '{', '}',':', '|','<', '>', '?' ]
+const obj2 = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','[', ']', ';', "'", ',', '.', '/']
+const objLet = ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L','Y', 'X', 'C', 'V', 'B', 'N', 'M']
+const objLet2 = ['q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p','a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','y', 'x', 'c', 'v', 'b', 'n', 'm' ]
 var cursor = 0;
 function create() {
   for (let i = 0; i < 13; i++) {
@@ -84,10 +88,10 @@ function create2() {
     spanOff2.className = 'off';
     spanOff2.textContent = objOff2[i];
     symbol2.appendChild(spanOff2);
-    const spanOn2 = document.createElement('span');
+   /* const spanOn2 = document.createElement('span');
     spanOn2.className = 'on';
     spanOn2.textContent = objOn2[i];
-    symbol2.appendChild(spanOn2);
+    symbol2.appendChild(spanOn2);*/
   }
   const sl = document.createElement('li');
   sl.className = 'symbol';
@@ -125,10 +129,10 @@ function create3() {
     spanOff2.className = 'off';
     spanOff2.textContent = objOff3[i];
     symbol2.appendChild(spanOff2);
-    const spanOn2 = document.createElement('span');
+    /*const spanOn2 = document.createElement('span');
     spanOn2.className = 'on';
     spanOn2.textContent = objOn3[i];
-    symbol2.appendChild(spanOn2);
+    symbol2.appendChild(spanOn2);*/
   }
   const entr = document.createElement('li');
   entr.className = 'enter';
@@ -162,10 +166,10 @@ function create4() {
     spanOff2.className = 'off';
     spanOff2.textContent = objOff4[i];
     symbol2.appendChild(spanOff2);
-    const spanOn2 = document.createElement('span');
+    /*const spanOn2 = document.createElement('span');
     spanOn2.className = 'on';
     spanOn2.textContent = objOn4[i];
-    symbol2.appendChild(spanOn2);
+    symbol2.appendChild(spanOn2);*/
   }
   const up = document.createElement('li');
   up.className = 'up';
@@ -232,9 +236,9 @@ let capslock = false;
 document.querySelectorAll('li').forEach((el) => {
   el.addEventListener('click', () => {
     if (el.classList.contains('space') == true) {
-      text.textContent += '&nbsp;';
+      text.innerHTML += '&nbsp;';
     }
-    else if (el.classList.contains('left-shift')==true || el.classList.contains('right-shift')==true || el.classList.contains('alt')==true ||el.classList.contains('ctrl')==true || el.classList.contains('win')==true ) {
+    else if (el.classList.contains('alt')==true ||el.classList.contains('ctrl')==true || el.classList.contains('win')==true ) {
         text.textContent += ''
     }
     else if (el.classList.contains('enter')==true){
@@ -252,13 +256,41 @@ document.querySelectorAll('li').forEach((el) => {
         text.textContent = text.textContent.slice(0,-1)
     }
     else if (el.classList.contains('capslock')== true) {
-        for (let i = 0; i < 13; i++) {
-            let spanOff = document.querySelectorAll('off')
-            spanOff.forEach((el) => {
-                spanOff.textContent = objOn[i];
-            })
-            
-          }
+        capslock= !capslock;
+      
+            let spanOff = document.querySelectorAll('.off')
+            let letr = document.querySelectorAll('.letter')
+            for(i=0; i<20; i++) {
+                if(capslock==true){
+                    spanOff[i].textContent = obj[i]
+                  
+                } else {
+                    spanOff[i].textContent = obj2[i]
+                  
+               }
+            }
+            for(i=0; i<30; i++) {
+                if(capslock==true){
+                    letr[i].textContent = objLet[i]
+                } else {
+                    letr[i].textContent = objLet2[i]
+                }
+            }
+    }
+    else if (el.classList.contains('left-shift')==true || el.classList.contains('right-shift')==true) {
+        shift = !shift;
+        let spanOff = document.querySelectorAll('.off')
+        let letr = document.querySelectorAll('.letter')
+        for(i=0; i<20; i++) {
+            if(shift==true){
+               spanOff[i].textContent = obj[i]
+              // letr[i].textContent = objLet[i]
+               
+            } else {
+               spanOff[i].textContent = obj2[i]
+                //letr[i].textContent = objLet2[i]
+           }
+        }
     }
     else {
       text.textContent += el.textContent;
@@ -270,26 +302,3 @@ document.querySelectorAll('li').forEach((el) => {
   });
 });
 
-let cap =  document.querySelector('.capslock')
-function capS(){
-    if (el.classList.contains('capslock')== true){
-        for (let i = 0; i < 13; i++) {
-            const symbol = document.createElement('li');
-            symbol.className = 'symbol';
-            ul.appendChild(symbol);
-            
-            const spanOn = document.createElement('span');
-            spanOn.className = 'on';
-            spanOn.textContent = objOn[i];
-            symbol.prepend(spanOn);
-          }
-          const del = document.createElement('li');
-          del.className = 'backspace';
-          del.textContent = 'Backspace';
-          ul.append(del);  
-    }
- /*let letr = document.querySelector('letter');
- //let symb= document.querySelector('.symbol')
-  letr.toUpperCase();
-  text.textContent += letr.textContent;*/
-}
