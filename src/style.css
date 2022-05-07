@@ -1,56 +1,95 @@
 * {
-    margin: 0;
+    margin: 0 30px;
     padding: 0;
 }
 .container {
     margin: auto;
+    
     display: flex;
     flex-direction: column;
     width:100%;
     height: 400px;
     background-color: gray;
 }
+h1 {
+    text-align: center;
+}
 .textarea {
-    width: 100%;
+    margin: auto;
+    
+    width: 90%;
     height: 200px;
     font: 1em/1.5 Verdana, Sans-Serif;
     background-color: aliceblue;
 }
 .board {
+    width: 900px;
     display: flex;
     justify-content: center;
     gap:5px;
-    margin: 0;
+    margin: 0 auto;
 padding: 0;
 list-style: none;
 }
 
  li {
-    float: left;
+   
+   
     margin: 0 5px 5px 0;
-    width: auto;
+    width: 40px;
     height: 40px;
     line-height: 40px;
     text-align: center;
+    
     background: #fff;
     border: 1px solid #f9f9f9;
     border-radius: 5px;
     cursor: pointer;
-   
+  
+  
     }
-    li:hover {
-        border: 2px solid  black;
-       
+li:hover {
+        border: 2px solid  black; 
         
     }
-    .active {
-        background-color: green;
-    }
-    .uppercase {
+.active {
+           background-color: green;
+       border-radius: 15px;
+       animation-name: circle; 
+       animation-duration: 6s;
+}
+@keyframes circle {
+    15% {
+        -webkit-transform: translateX(9px);
+        transform: translateX(9px);
+      }
+      30% {
+        -webkit-transform: translateX(-9px);
+        transform: translateX(-9px);
+      }
+      40% {
+        -webkit-transform: translateX(6px);
+        transform: translateX(6px);
+      }
+      50% {
+        -webkit-transform: translateX(-6px);
+        transform: translateX(-6px);
+      }
+      65% {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+      }
+      100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
+}
+.uppercase {
         text-transform: uppercase;
     }
 .symbol {
         width: 40px;
+       
     }
 .letter {
     width: 40px;
@@ -58,22 +97,32 @@ list-style: none;
 .board .delete  {
     width: 70px;
 }
+.off {
+margin:auto;
+}
 .on {
     display: none;
 }
+.backspace {
+    width: 90px
+}
 .lastitem {
-    margin-right: 0;
+    width: 40px;
 } 
 .tab {
-    width: 50px;
-    
+    width: 40px;
 }
-
+.alt {
+    width:40px
+}
+.ctrl {
+    width: 40px;
+}
 .dell {
-    width: 50px;
+    width: 40px;
 }
 .enter {
-    width: 50px;
+    width: 70px;
 }
 .capslock {
     width: 70px;

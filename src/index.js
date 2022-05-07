@@ -41,6 +41,10 @@ const obj = ['~', '!', '@', '#', '$', '%', ':', '?', '*', '(', ')', '_', '+', '{
 const obj2 = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','[', ']', ';', "'", ',', '.', '/']
 const objLet = ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L','Y', 'X', 'C', 'V', 'B', 'N', 'M']
 const objLet2 = ['q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p','a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','y', 'x', 'c', 'v', 'b', 'n', 'm' ]
+const objRuOff = ["ё", '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',"х", "ъ","ж","э","б","ю", "."]
+const objRu =["й", "ц","у","к", "е","н", "г", "ш","щ","з","ф","ы","в", "а", "п","р","о","л", "д","я","ч","с","м","и","т","ь"]
+const objRuCaps =["Й","Ц","У","К","Е","Н","Г","Ш","Щ","З","Ф","Ы","В","А","П","Р","О","Л","Д","Я","Ч","С","М","И","Т","Ь"]
+const objRuOffCaps = ["Ё",'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',"Х", "Ъ","Ж","Э","Б","Ю", "."]
 var cursor = 0;
 function create() {
   for (let i = 0; i < 13; i++) {
@@ -61,6 +65,8 @@ function create() {
   del.className = 'backspace';
   del.textContent = 'Backspace';
   ul.append(del);
+ var key = localStorage.getItem('lng')
+ console.log(key)
 }
 create();
 // row2
@@ -79,6 +85,7 @@ function create2() {
     letter.className = 'letter';
     ul2.appendChild(letter);
     letter.textContent = objLetter[i];
+   
   }
   for (var i = 0; i < 2; i++) {
     const symbol2 = document.createElement('li');
@@ -92,6 +99,7 @@ function create2() {
     spanOn2.className = 'on';
     spanOn2.textContent = objOn2[i];
     symbol2.appendChild(spanOn2);*/
+  
   }
   const sl = document.createElement('li');
   sl.className = 'symbol';
@@ -115,7 +123,7 @@ caps.textContent = 'Capslock';
 ul3.appendChild(caps);
 
 function create3() {
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 9; i++) {
     const letter = document.createElement('li');
     letter.className = 'letter';
     ul3.appendChild(letter);
@@ -227,33 +235,59 @@ ul5.appendChild(rightCtrl);
 const about = document.createElement('p');
 about.className = 'about';
 about.id = 'about-board';
-about.textContent = 'Клавиатура создана в операционной системе Windows. Для переключения языка комбинация: левыe ctrl + alt';
+about.textContent = 'Клавиатура создана в операционной системе Windows. Для переключения языка: Win';
 div.appendChild(about);
 
 // textarea
 let shift = false;
 let capslock = false;
+let winRu = false;
+let lng;
 document.querySelectorAll('li').forEach((el) => {
   el.addEventListener('click', () => {
     if (el.classList.contains('space') == true) {
       text.innerHTML += '&nbsp;';
+      el.classList.add('active');
+      setTimeout(() => {
+        el.classList.remove('active');
+      }, 500);
     }
-    else if (el.classList.contains('alt')==true ||el.classList.contains('ctrl')==true || el.classList.contains('win')==true ) {
-        text.textContent += ''
+    else if (el.classList.contains('alt')==true ||el.classList.contains('ctrl')==true ) {
+        text.textContent += '';
+        el.classList.add('active');
+        setTimeout(() => {
+          el.classList.remove('active');
+        }, 500);
     }
     else if (el.classList.contains('enter')==true){
         text.textContent += '';
         text.innerHTML += '\n';
-        console.log('no')
+        console.log('no');
+        el.classList.add('active');
+        setTimeout(() => {
+          el.classList.remove('active');
+        }, 500);
     }
     else if (el.classList.contains('tab')==true) {
         text.innerHTML += '&nbsp;&nbsp;&nbsp;';
+        el.classList.add('active');
+        setTimeout(() => {
+          el.classList.remove('active');
+        }, 500);
     }
     else if (el.classList.contains('lastitem') == true) {
       text.textContent = '';
+      el.classList.add('active');
+      setTimeout(() => {
+        el.classList.remove('active');
+      }, 500);
     }
     else if (el.classList.contains('backspace')==true) {
-        text.textContent = text.textContent.slice(0,-1)
+        text.textContent = text.textContent.slice(0,-1);
+        el.classList.add('active');
+        setTimeout(() => {
+          el.classList.remove('active');
+        }, 500);
     }
     else if (el.classList.contains('capslock')== true) {
         capslock= !capslock;
@@ -268,14 +302,19 @@ document.querySelectorAll('li').forEach((el) => {
                     spanOff[i].textContent = obj2[i]
                   
                }
+               el.classList.add('active');
+               setTimeout(() => {
+                 el.classList.remove('active');
+               }, 500);
             }
             for(i=0; i<30; i++) {
                 if(capslock==true){
-                    letr[i].textContent = objLet[i]
+                    letr[i].textContent =  objLet[i]
                 } else {
                     letr[i].textContent = objLet2[i]
                 }
             }
+           
     }
     else if (el.classList.contains('left-shift')==true || el.classList.contains('right-shift')==true) {
         shift = !shift;
@@ -284,16 +323,57 @@ document.querySelectorAll('li').forEach((el) => {
         for(i=0; i<20; i++) {
             if(shift==true){
                spanOff[i].textContent = obj[i]
-              // letr[i].textContent = objLet[i]
+             
                
             } else {
                spanOff[i].textContent = obj2[i]
-                //letr[i].textContent = objLet2[i]
+              
            }
+           el.classList.add('active');
+           setTimeout(() => {
+             el.classList.remove('active');
+           }, 500);
+        }
+        for(i=0; i<30; i++) {
+            if(shift==true){
+                letr[i].textContent =  objLet[i]
+            } else {
+                letr[i].textContent = objLet2[i]
+            }
         }
     }
+    else if (el.classList.contains('win')==true ){
+        
+        winRu=!winRu
+            let spanOff = document.querySelectorAll('.off')
+            let letr = document.querySelectorAll('.letter')
+            for(i=0; i<20; i++){
+                if(winRu==true){
+                spanOff[i].textContent = objRuOff[i]
+                lng= "ru";
+                localStorage.setItem('lng', lng)
+            } else {
+                spanOff[i].textContent = obj2[i]
+                lng = "en"
+                localStorage.setItem('lng', lng)
+           }
+            }
+            for(i=0; i<28; i++) {
+                if(winRu==true){
+                    letr[i].textContent =  objRu[i];
+                    lng = "ru"
+                } else {
+                    letr[i].textContent = objLet2[i]
+                    lng = "en"
+                }
+            }
+           
+    }
+    
     else {
+        el.click;
       text.textContent += el.textContent;
+      cursor++
       el.classList.add('active');
       setTimeout(() => {
         el.classList.remove('active');
@@ -302,3 +382,29 @@ document.querySelectorAll('li').forEach((el) => {
   });
 });
 
+function runOnKeys(func, ...codes) {
+    let pressed = new Set();
+
+    document.addEventListener('keydown', function(event) {
+      pressed.add(event.code);
+
+      for (let code of codes) { 
+        if (!pressed.has(code)) {
+          return;
+        }
+      }
+      pressed.clear();
+      func();
+    });
+
+    document.addEventListener('keyup', function(event) {
+      pressed.delete(event.code);
+    });
+
+  }
+  runOnKeys(
+    () => 
+    console.log("Привет!"),
+    "ShiftLeft",
+    "ControlLeft"
+  );
