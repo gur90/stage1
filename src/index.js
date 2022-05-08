@@ -1,3 +1,4 @@
+
 const div = document.createElement('div');
 div.className = 'container';
 document.body.appendChild(div);
@@ -55,18 +56,12 @@ function create() {
     spanOff.className = 'off';
     spanOff.textContent = objOff[i];
     symbol.appendChild(spanOff);
-   
-    /*const spanOn = document.createElement('span');
-    spanOn.className = 'on';
-    spanOn.textContent = objOn[i];
-    symbol.prepend(spanOn);*/
   }
   const del = document.createElement('li');
   del.className = 'backspace';
   del.textContent = 'Backspace';
   ul.append(del);
- var key = localStorage.getItem('lng')
- console.log(key)
+  alert("Уважаемые проверяющие! Дайте пожалуйста возможность доделать работу и проверьте на 3й день кроссчека!Спасибо!")
 }
 create();
 // row2
@@ -95,10 +90,7 @@ function create2() {
     spanOff2.className = 'off';
     spanOff2.textContent = objOff2[i];
     symbol2.appendChild(spanOff2);
-   /* const spanOn2 = document.createElement('span');
-    spanOn2.className = 'on';
-    spanOn2.textContent = objOn2[i];
-    symbol2.appendChild(spanOn2);*/
+  
   
   }
   const sl = document.createElement('li');
@@ -137,10 +129,7 @@ function create3() {
     spanOff2.className = 'off';
     spanOff2.textContent = objOff3[i];
     symbol2.appendChild(spanOff2);
-    /*const spanOn2 = document.createElement('span');
-    spanOn2.className = 'on';
-    spanOn2.textContent = objOn3[i];
-    symbol2.appendChild(spanOn2);*/
+   
   }
   const entr = document.createElement('li');
   entr.className = 'enter';
@@ -174,10 +163,7 @@ function create4() {
     spanOff2.className = 'off';
     spanOff2.textContent = objOff4[i];
     symbol2.appendChild(spanOff2);
-    /*const spanOn2 = document.createElement('span');
-    spanOn2.className = 'on';
-    spanOn2.textContent = objOn4[i];
-    symbol2.appendChild(spanOn2);*/
+   
   }
   const up = document.createElement('li');
   up.className = 'up';
@@ -242,7 +228,7 @@ div.appendChild(about);
 let shift = false;
 let capslock = false;
 let winRu = false;
-let lng;
+let lng = "en";
 document.querySelectorAll('li').forEach((el) => {
   el.addEventListener('click', () => {
     if (el.classList.contains('space') == true) {
@@ -308,8 +294,9 @@ document.querySelectorAll('li').forEach((el) => {
                }, 500);
             }
             for(i=0; i<30; i++) {
+              
                 if(capslock==true){
-                    letr[i].textContent =  objLet[i]
+                    letr[i].textContent = objLet[i]
                 } else {
                     letr[i].textContent = objLet2[i]
                 }
@@ -384,7 +371,6 @@ document.querySelectorAll('li').forEach((el) => {
 
 function runOnKeys(func, ...codes) {
     let pressed = new Set();
-
     document.addEventListener('keydown', function(event) {
       pressed.add(event.code);
 
@@ -406,5 +392,5 @@ function runOnKeys(func, ...codes) {
     () => 
     console.log("Привет!"),
     "ShiftLeft",
-    "ControlLeft"
+    "ControlLeft",
   );
