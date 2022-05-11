@@ -16,17 +16,7 @@ const ul = document.createElement('ul');
 ul.className = 'board';
 ul.id = 'keyboard';
 div.appendChild(ul);
-/*const symbol = document.createElement('li');
-symbol.className = 'symbol';
-ul.appendChild(symbol);*/
-/*const spanOff = document.createElement('span');
-spanOff.className = 'off';
-spanOff.textContent = '`';
-symbol.appendChild(spanOff);*/
-/*const spanOn = document.createElement('span');
-spanOn.className = 'on';
-spanOn.textContent = '~';
-symbol.prepend(spanOn);*/
+
 const objOff = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='];
 const objOn = ['~', '!', '@', '#', '$', '%', ':', '?', '*', '(', ')', '_', '+'];
 const objLetter = ['q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p'];
@@ -61,7 +51,7 @@ function create() {
   del.className = 'backspace';
   del.textContent = 'Backspace';
   ul.append(del);
-  alert("Уважаемые проверяющие! Дайте пожалуйста возможность доделать работу и проверьте на 3й день кроссчека!Спасибо!")
+ 
 }
 create();
 // row2
@@ -101,6 +91,7 @@ function create2() {
   dell.className = 'lastitem';
   dell.textContent = 'Del';
   ul2.append(dell);
+ 
 }
 create2();
 
@@ -231,6 +222,7 @@ let winRu = false;
 let lng = "en";
 document.querySelectorAll('li').forEach((el) => {
   el.addEventListener('click', () => {
+    text.focus();
     if (el.classList.contains('space') == true) {
       text.innerHTML += '&nbsp;';
       el.classList.add('active');
@@ -337,24 +329,22 @@ document.querySelectorAll('li').forEach((el) => {
             for(i=0; i<20; i++){
                 if(winRu==true){
                 spanOff[i].textContent = objRuOff[i]
-                lng= "ru";
-                localStorage.setItem('lng', lng)
+               language = "ru"
             } else {
-                spanOff[i].textContent = obj2[i]
-                lng = "en"
-                localStorage.setItem('lng', lng)
+                spanOff[i].textContent = obj2[i]   
+                language = "en" 
            }
             }
             for(i=0; i<28; i++) {
                 if(winRu==true){
                     letr[i].textContent =  objRu[i];
-                    lng = "ru"
+                    language = "ru"
                 } else {
                     letr[i].textContent = objLet2[i]
-                    lng = "en"
+                    language = "en"
                 }
             }
-           
+          
     }
     
     else {
@@ -394,3 +384,11 @@ function runOnKeys(func, ...codes) {
     "ShiftLeft",
     "ControlLeft",
   );
+  const setLocalStorage = () => {
+    localStorage.setItem("language", language);
+   
+  };
+  window.addEventListener("beforeunload", setLocalStorage);
+  
+
+  
